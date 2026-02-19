@@ -1,0 +1,60 @@
+import Conversation from "../models/conversation.js";
+import Message from "../models/message.js";
+import { getIO } from "../socket-io/socket-io.js";
+
+
+export const sendMessage = async (req, res) => {
+    const io = getIO();
+    try{
+
+        const {conversationId, text} = req.body;
+        
+        const conv = await Conversation.findById(conversationId);
+        
+        if(!conv) return res.status(400).json({ message: "Conversation not found!"});
+        
+        const message = new Message({
+            conversationId,
+            senderId: req.user._id,
+            text
+        });
+        
+        const saved = await message.save();
+        
+        conv.lastMessage = text;
+        
+        if(req.user._id.toString() === conv.sellerId.toString()){
+            conv.readBySeller = true;
+            conv.readByBuyer = false;
+        }
+        else{
+            conv.readBySeller = false;
+            conv.readByBuyer = true;
+        }
+        
+        await conv.save();
+
+        io.to(conv._id).emit("lastMsgReceived", {
+            lastMsg: text
+        });
+        
+        return res.status(201).json(saved);
+    } catch(error) {
+        console.error("CUSTOM ERROR:",error);
+        res.status(500).json({ message: "Error in fecthing messages!"});
+    }
+};
+
+export const getMessages = async (req, res) => {
+    const conversationId = req.params.id;
+    if(!conversationId || conversationId === 'undefined') 
+        return res.status(400).json({ message: "CoversationId required!"});
+
+    try {
+        const messages = await Message.find({ conversationId }).populate('senderId', 'username profilePic').sort({ createdAt: 1 });        
+        return res.status(200).json(messages);
+    } catch(error) {
+        console.error("CUSTOM ERROR:",error);
+        res.status(500).json({ message: "Error in fetching messages!"});
+    }
+};

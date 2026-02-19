@@ -1,0 +1,1273 @@
+.order-container {
+    width: 100%;
+    margin-top: 30px;
+
+    .order {
+        max-width: 1300px;
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 30px;
+
+        .order-back-button {
+            font-size: 25px;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding-bottom: 20px;
+            display: inline-block;
+
+            &:hover {
+                color: rgb(1, 135, 144);
+            }
+        }
+
+        .order-status-header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+
+            .status-icon {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-right: 5px;
+
+
+                canvas,
+                svg {
+                    width: 110px !important;
+                    height: 90px !important;
+                    background: transparent !important;
+                }
+
+                .fontawesome-icon {
+                    width: 60px !important;
+                    height: 60px !important;
+                    padding: 30px;
+                }
+            }
+
+            .status-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 5px;
+                padding: 20px 0px;
+
+                .heading {
+                    font-size: 40px;
+                    font-weight: 700;
+                }
+
+                .sub-heading {
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+            }
+
+            &.requested {
+                background-color: #D97706;
+                color: #FFFBEB;
+            }
+
+            &.active {
+                background-color: #018790;
+                color: #F0F9FA;
+            }
+
+            &.delivered {
+                background-color: #16A34A;
+                color: #F0FDF4;
+            }
+
+            &.revision {
+                background-color: #5B21B6;
+                color: #F5F3FF;
+            }
+
+            &.declined {
+                background-color: #4B5563;
+                color: #F9FAFB;
+            }
+
+            &.req-cancellation {
+                background-color: #C2410C;
+                color: #FFF7ED;
+            }
+
+            &.cancelled {
+                background-color: #991B1B;
+                color: #FEF2F2;
+            }
+
+            &.completed {
+                background-color: #00B7B5;
+                color: #FFFFFF;
+            }
+        }
+
+        .order-header {
+            display: flex;
+            margin-top: 30px;
+            justify-content: space-between;
+
+            .order-header-major {
+                flex: 5;
+                display: flex;
+
+                .order-title-preview {
+                    width: 180px;
+                    height: 120px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 13px;
+                    }
+                }
+
+                .order-title-info {
+                    flex: 2;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 10px;
+                    font-size: 30px;
+                    padding: 0px 30px;
+                    // background-color: yellow;
+                    width: 100%;
+
+                    .order-title-info-gig-name {
+                        width: 100%;
+                        max-width: 650px;
+                        font-size: 30px;
+                        // background-color: greenyellow;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .order-title-user-info{
+                        font-size: 23px;
+                        display: flex;
+                        // background-color: lightcoral;
+                        gap: 8px;
+
+                        .role-label{
+                            font-weight: 500;
+                        }
+
+                        .user-info{
+                            display: flex;
+                            gap: 5px;
+                            font-size: 18px;
+                            align-items: center;
+                            color: rgb(68, 68, 68);
+
+                            &:hover{
+                              text-decoration: underline;  
+                            }
+                        }
+
+                        .user-profile-picture{
+                            width: 35px;
+                            height: 35px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .order-title-status {
+                flex: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: capitalize;
+                border-left: 2px solid rgb(221, 221, 221);
+
+                .order-due {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .due {
+                        color: #018790;
+                        font-size: 40px;
+                        text-align: center;
+                    }
+
+                    .due-label {
+                        color: #005461;
+                        font-size: 20px;
+                    }
+
+                    &.overdue {
+
+                        .due,
+                        .due-label {
+                            color: #C53030;
+                        }
+                    }
+
+                    &.warning {
+
+                        .due,
+                        .due-label {
+                            color: #B7791F;
+                        }
+                    }
+                }
+            }
+        }
+
+        .order-main {
+            width: 100%;
+            display: flex;
+            padding-top: 30px;
+
+            .order-content {
+                flex: 5;
+                padding-right: 7px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                ////////////// ORDER REQUEST STATE ///////////////
+
+                .buyer-req-box {
+                    background-color: rgb(228, 228, 228);
+                    border-radius: 20px;
+                    padding: 0px 30px;
+                    padding-bottom: 20px;
+
+                    .title {
+                        font-size: 25px;
+                        padding: 15px 0px;
+                        font-weight: 500;
+                    }
+
+                    .req {
+                        padding: 10px 0px;
+                        font-size: 18px;
+                    }
+                }
+
+                ////////////////////////// ORDER DECLINED STATE//////////////////
+                .decline-box {
+                    background-color: rgb(245, 150, 150);
+                    padding: 20px;
+                    border-radius: 20px;
+
+                    .title {
+                        font-size: 25px;
+                        font-weight: 700;
+                    }
+
+                    .reason-box {
+                        font-size: 20px;
+                        padding: 20px;
+
+                        .reason-box-title {
+                            font-size: 22px;
+                            font-weight: 500;
+                        }
+
+                        .reason-box-content {
+                            padding: 10px;
+                            // background-color: yellowgreen;
+                        }
+                    }
+                }
+
+                //////////////////// ORDER ACTIVE STATE ////////////////
+                .delivery-note {
+                    padding-bottom: 10px;
+
+                    .title {
+                        padding-bottom: 13px;
+                        font-size: 25px;
+                        // font-weight: 500;
+                    }
+
+                    textarea {
+                        width: 100%;
+                        resize: vertical;
+                        font-size: 18px;
+                        border-radius: 10px;
+                        padding: 12px;
+                    }
+
+                    textarea:focus {
+                        outline: none;
+                    }
+                }
+
+                .upload-file-box {
+                    // background-color: #018790;
+                    background-color: #F4F4F4;
+                    padding: 20px;
+                    padding-bottom: 17px;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    align-items: flex-start;
+                    border-radius: 20px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+                    &.empty {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .order-upload-file-input {
+                        display: none;
+                    }
+
+                    .files-empty-text {
+                        font-size: 30px;
+                        width: 100%;
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .order-upload-file-button {
+                        padding: 8px 13px;
+                        background-color: #005461;
+                        border: none;
+                        border-radius: 8px;
+                        font-size: initial;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        color: white;
+                    }
+
+                    .order-file-preview-container {
+                        background-color: #F4F4F4;
+                        width: 100%;
+                        flex: 1;
+                        display: flex;
+
+                        .order-file-preview {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 20px;
+
+                            // .files-empty-text IS ABOVE
+
+                            .order-file {
+                                // background-color: rgb(196, 196, 196);
+                                width: 130px;
+                                height: 210px;
+                                background-color: #018790;
+                                color: white;
+                                display: flex;
+                                flex-direction: column;
+                                // padding: 10px;
+                                justify-content: space-between;
+                                align-items: center;
+                                border-radius: 12px;
+                            }
+
+                            .file-preview {
+                                width: 100%;
+                                height: 90px;
+
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    border-radius: 12px 12px 0 0;
+                                }
+
+                                .video_icon {
+                                    width: 100%;
+                                    height: 100%;
+                                    font-size: 25px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .audio_icon {
+                                    width: 100%;
+                                    height: 100%;
+                                    font-size: 25px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .file_icon {
+                                    width: 100%;
+                                    height: 100%;
+                                    font-size: 25px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                            }
+
+                            .file-info {
+                                padding: 5px 5px;
+                                text-align: center;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                max-width: 80px;
+                                min-width: 0;
+                                color: white;
+                                font-weight: 500;
+                            }
+
+                            .delete-img-button {
+                                padding: 15px;
+                                color: white;
+                                background: none;
+                                font-size: 17px;
+                                border: none;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .contains {
+                            align-items: center;
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+
+                //////////// ORDER DELIVERED STATE ////////
+                .delivered-note {
+                    padding: 20px;
+                    border-radius: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #e0e0e0;
+                    gap: 7px;
+                    line-height: 1.5;
+                    // border: 1px solid gray;
+                    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+                    .title {
+                        font-size: 25px;
+                        font-weight: 500;
+                        color: #333;
+                    }
+
+                    .note {
+                        font-size: 20px;
+                        color: #555;
+                    }
+                }
+
+                .upload-file-box {
+                    background-color: #F4F4F4;
+                    padding: 20px;
+                    padding-bottom: 17px;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    align-items: flex-start;
+                    border-radius: 20px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+                    .title {
+                        font-size: 25px;
+                        font-weight: 500;
+                        padding-bottom: 5px;
+                    }
+
+                    &.empty {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .add-file-info {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 10px;
+
+                        .order-upload-file-input {
+                            display: none;
+                        }
+
+                        .order-upload-file-button {
+                            width: 15%;
+                            padding: 10px 15px;
+                            background-color: #005461;
+                            border: none;
+                            border-radius: 8px;
+                            font-size: initial;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            color: white;
+                        }
+
+                        .add-file-info-text {
+                            color: red;
+                            display: flex;
+                            width: 85%;
+
+                            .icon {
+                                width: 4%;
+                            }
+
+                            .text {
+                                width: 96%;
+                            }
+                        }
+                    }
+
+                    .files-empty-text {
+                        font-size: 30px;
+                        padding: 15px 0px;
+                        width: 100%;
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+
+
+                    .order-file-preview-container {
+                        background-color: #F4F4F4;
+                        width: 100%;
+                        flex: 1;
+                        display: flex;
+                        padding: 10px 0px;
+
+                        .order-file-preview {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 20px;
+                            padding-top: 7px;
+
+                            // .files-empty-text IS ABOVE
+
+                            .order-file {
+                                // background-color: rgb(196, 196, 196);
+                                width: 130px;
+                                height: 210px;
+                                background-color: #018790;
+                                color: white;
+                                display: flex;
+                                flex-direction: column;
+                                // padding: 10px;
+                                justify-content: space-between;
+                                align-items: center;
+                                border-radius: 12px;
+                            }
+
+                            .file-preview {
+                                width: 100%;
+                                height: 90px;
+
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    border-radius: 12px 12px 0 0;
+                                }
+
+                                .video_icon {
+                                    width: 100%;
+                                    height: 100%;
+                                    font-size: 25px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .audio_icon {
+                                    width: 100%;
+                                    height: 100%;
+                                    font-size: 25px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+
+                                .file_icon {
+                                    width: 100%;
+                                    height: 100%;
+                                    font-size: 25px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                            }
+
+                            .file-info {
+                                padding: 5px 5px;
+                                text-align: center;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                max-width: 80px;
+                                min-width: 0;
+                                color: white;
+                                font-weight: 500;
+                            }
+
+                            .deliver-file-button {
+                                padding: 10px;
+                                color: white;
+                                background: none;
+                                font-size: 24px;
+                                border: none;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .contains {
+                            align-items: center;
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+
+                //// ORDER COMPLETED STATE ///
+                .buyer-review-container {
+                    padding: 15px 10px;
+                    // background-color: #f8fafc;
+                    border: 1px solid #e5e7eb;
+                    border: 11px;
+                    max-width: 650px;
+
+                    .review-title {
+                        font-size: 30px;
+                        font-weight: 500;
+                        padding: 15px 0px;
+                    }
+
+                    .review-rating-and-timestamp {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 10px 0px;
+                        font-size: 20px;
+                    }
+
+                    .review-rating {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        font-size: 24px;
+                    }
+
+                    textarea {
+                        width: 100%;
+                        height: 150px;
+                        resize: vertical;
+                        padding: 15px;
+                        font-size: 20px;
+                        border-radius: 20px;
+                        margin-top: 10px;
+                    }
+
+                    button {
+                        padding: 10px 20px;
+                        margin-top: 10px;
+                        border-color: #018790;
+                        color: #018790;
+                        border-radius: 6px;
+                        background: transparent;
+                        cursor: pointer;
+                    }
+
+                    .thanks-msg {
+                        font-size: 25px;
+                        font-weight: 600;
+                    }
+
+                    .review-subtitle {
+                        padding: 15px 0px;
+                        font-size: 30px;
+                    }
+                }
+
+                ///// ORDER DECLINDE STATE /////
+                .no-action-text {
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 30px;
+                    color: gray;
+                }
+
+            }
+
+            .order-summary {
+                flex: 2;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+
+                .order-summary-card {
+                    width: 90%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding-top: 10px;
+                    border: 1px solid gray;
+                    border-radius: 15px;
+
+                    .title {
+                        font-size: 28px;
+                        font-weight: 700;
+                        padding: 0px 20px;
+                    }
+
+                    .order-summary-table {
+                        width: 100%;
+                        padding: 13px 20px;
+
+                        table {
+                            width: 100%;
+
+                            td:nth-child(1) {
+                                font-weight: 500;
+                            }
+
+                            tr:nth-child(1) td:nth-child(2) {
+                                cursor: default;
+
+                                button {
+                                    background-color: white;
+                                    border: none;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            .no-revisions-left-text {
+                                color: red;
+                            }
+
+                            .price-field {
+                                font-size: 24px;
+                                font-weight: 500;
+
+                                td {
+                                    padding: 5px 0px;
+                                }
+                            }
+                        }
+                    }
+
+                    .order-actions {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        background-color: rgb(244, 244, 244);
+                        padding: 20px 20px;
+                        border-radius: 0px 0px 15px 15px;
+
+                        button {
+                            padding: 8px 0px;
+                            font-size: 18px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: all 0.2s ease-in-out;
+                        }
+
+                        .accept-order {
+                            background-color: green;
+                            border: 1px solid green;
+                            color: white;
+
+                            &:hover {
+                                background-color: #0b692e;
+                                border-color: #15803d;
+                            }
+                        }
+
+                        .decline-order {
+                            background-color: transparent;
+                            color: red;
+                            border: 1px solid red;
+
+                            &:hover {
+                                background-color: #dc2626;
+                                color: white;
+                            }
+                        }
+
+                        .revise-order {
+                            background-color: #F5F3FF;
+                            color: #5B21B6;
+                            border: 1px solid #DDD6FE;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 7px;
+
+                            &:hover {
+                                background-color: #EDE9FE;
+                            }
+
+                            &:disabled {
+                                background-color: #F9FAFB; // Lighter, grayish background
+                                color: #9CA3AF; // Muted text color
+                                border-color: #E5E7EB; // Muted border
+                                cursor: not-allowed; // Shows the "blocked" cursor
+                                opacity: 0.7; // Slight transparency
+                                // pointer-events: none; // Prevents hover and click events
+
+                            }
+                        }
+
+
+                        .chat-button {
+                            background-color: #ffffff;
+                            color: #374151;
+                            border: none;
+                            transition: all 0.2 ease;
+                            border: 1px solid #D1D5DB;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+
+                            &:hover {
+                                background-color: #F9FAFB;
+                                border-color: #9ca3af;
+                                color: #111827;
+                            }
+                        }
+
+                        // ORDER SUMMARY ACTIVE STATE
+
+                        .deliver-order {
+                            background-color: #018790;
+                            color: #FFFFFF;
+                            border: none;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                background-color: #006F76;
+                            }
+                        }
+
+                        .cancel-order {
+                            background-color: transparent;
+                            border: 1px solid #9CA3AF;
+                            color: #4B5563;
+                            transition: all 0.2s ease;
+                            margin-top: 10px;
+
+                            &:hover {
+                                background-color: #F9FAFB;
+                                border-color: #EF4444;
+                                color: #EF4444;
+                            }
+                        }
+
+                        .accept-work {
+                            background-color: #018790;
+                            color: white;
+                            border-radius: 8px;
+                            border: none;
+                            cursor: pointer;
+                            transition: background 0.2s;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 7px;
+
+                            &:hover {
+                                background-color: #006F76;
+                            }
+                        }
+
+                        ///// ORDER CANCELLATION REQUEST //////
+                        .accept-order-cancel {
+                            background-color: #16a34a;
+                            border: none;
+                            color: white;
+                        }
+
+                        .reject-order-cancel {
+                            background-color: #dc2626;
+                            border: none;
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            .order-desc {
+                width: 100%;
+                padding-top: 40px;
+
+                .order-desc-attr {
+
+                    table {
+                        font-size: 20px;
+
+                        td {
+                            padding-bottom: 15px;
+                        }
+
+                        tr {
+                            td:nth-child(2) {
+                                padding-left: 30px;
+                            }
+                        }
+                    }
+
+                    .order-attr {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .order-status {
+                width: 100%;
+                padding-top: 20px;
+                position: relative;
+
+                .order-status-title {
+                    font-weight: 500;
+                    font-size: 30px;
+                }
+
+                .order-status-items {
+                    padding: 20px;
+                    font-size: 20px;
+                    font-weight: 500;
+                    // text-align: center;
+                }
+
+                .order-action {
+                    width: 50%;
+
+                    .buyer-requested {
+                        width: 100%;
+                        padding: 10px 0px;
+
+                        .req-note {
+                            font-size: 27px;
+                            padding: 20px 0px;
+                        }
+
+                        .sent-requirements {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+
+                            .title {
+                                font-size: 20px;
+                            }
+
+                            textarea {
+                                padding: 10px;
+                            }
+                        }
+                    }
+
+                    .order-request-actions {
+
+                        .buyer-req {
+                            width: 100%;
+                            padding: 10px 0px;
+                            // background-color: aqua;
+
+                            .buyer-req-title {
+                                font-size: 23px;
+                                padding: 10px 0px;
+                            }
+                        }
+
+                        .order-request-action-btns {
+                            display: flex;
+                            gap: 10px;
+                            justify-content: center;
+
+                            .order-accept-btn {
+                                padding: 10px 20px;
+                                color: white;
+                                border: none;
+                                background-color: green;
+                                border-radius: 10px;
+                                cursor: pointer;
+                            }
+
+                            .order-reject-btn {
+                                padding: 10px 20px;
+                                color: white;
+                                border: none;
+                                background-color: red;
+                                border-radius: 10px;
+                                cursor: pointer;
+                            }
+
+                            .order-reject-cancel-btn {
+                                padding: 10px 20px;
+                                color: white;
+                                border: none;
+                                background-color: rgb(1, 135, 144);
+                                border-radius: 10px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    // ORDER = ACTIVE && ROLE = BUYER
+                    .order-active-buyer {
+                        flex: 1;
+                        width: 100%;
+                    }
+
+                    .order-upload-file-input {
+                        display: none;
+                    }
+
+                    .order-upload-file-button {
+                        padding: 5px 10px;
+                        background-color: gainsboro;
+                        border: 1px solid gray;
+                        border-radius: 5px;
+                        font-size: initial;
+                        cursor: pointer;
+                    }
+
+                    .order-file-preview-container {
+
+                        .order-file-preview {
+                            margin-top: 10px;
+                            max-width: 400px;
+                            width: 100%;
+                            min-height: 100px;
+                            width: 100%;
+                            height: 100%;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+
+                            gap: 10px;
+                            padding: 8px;
+
+                            .order-file {
+                                background-color: rgb(196, 196, 196);
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                border-radius: 10px;
+                            }
+
+                            .delete-img-button {
+                                padding: 20px;
+                                background: none;
+                                border: none;
+                                cursor: pointer;
+                            }
+
+                            img {
+                                width: 70px;
+                                height: 70px;
+                                border-radius: 12% 0% 0% 12%;
+                            }
+
+                            .video_icon {
+                                width: 70px;
+                                height: 70px;
+                                margin-left: 20px;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .audio_icon {
+                                width: 70px;
+                                height: 70px;
+                                margin-left: 20px;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .file_icon {
+                                width: 70px;
+                                height: 70px;
+                                margin-left: 20px;
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+
+                        .contains {
+                            align-items: initial;
+                            justify-content: center;
+                        }
+
+                        textarea {
+                            width: 100%;
+                        }
+                    }
+
+                    .delivered-files {
+                        margin-top: 10px;
+                        max-width: 400px;
+                        width: 100%;
+                        min-height: 100px;
+                        background-color: rgb(50, 205, 233);
+                        width: 100%;
+                        height: 100%;
+
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+
+                        gap: 10px;
+                        padding: 8px;
+                        border-radius: 10px;
+
+                        .delivered-file {
+                            background-color: rgb(196, 196, 196);
+                            display: flex;
+                            align-items: center;
+                            border-radius: 10px;
+
+                            .delivered-file-info {
+                                width: 100%;
+
+                                .delivered-file-name {
+                                    display: flex;
+                                    justify-content: center;
+                                    width: 100%;
+                                }
+
+                                .delivered-file-size {
+                                    display: flex;
+                                    justify-content: center;
+                                    width: 100%;
+                                }
+
+                            }
+
+                            img {
+                                width: 70px;
+                                height: 70px;
+                                border-radius: 12% 0% 0% 12%;
+                            }
+
+                            .video_icon {
+                                width: 70px;
+                                height: 70px;
+                                margin-left: 20px;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .audio_icon {
+                                width: 70px;
+                                height: 70px;
+                                margin-left: 20px;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .file_icon {
+                                width: 70px;
+                                height: 70px;
+                                margin-left: 20px;
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .deliver-file-button {
+                                font-size: 20px;
+                                padding: 10px 15px;
+                                background: none;
+                                border: none;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .order-action-buttons {
+                        display: flex;
+                        gap: 10px;
+                        padding: 5px 10px;
+                    }
+
+
+                    .order-open-chat-button-container {
+                        display: flex;
+
+                        .order-open-chat-button {
+                            padding: 10px 15px;
+                            font-size: 18px;
+                            border: none;
+                            border-radius: 10px;
+                            background-color: rgb(1, 135, 144);
+                            color: white;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                // Other sections
+
+                .order-request-actions {
+                    padding: 10px 0px;
+
+                    textarea {
+                        width: 100%;
+                        padding: 10px;
+                        resize: none;
+                        font-size: 15px;
+                    }
+                }
+
+                .order-declined-window {
+                    padding: 10px 0px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    textarea {
+                        width: 100%;
+                        padding: 10px;
+                        resize: none;
+                        font-size: 15px;
+                    }
+                }
+            }
+
+
+        }
+    }
+}

@@ -4,6 +4,8 @@ WizardHelp is a freelance marketplace platform built with the **MERN stack**, en
 
 ### 🌍 Experience the platform live: [wizardhelp.vercel.app](https://wizardhelp.vercel.app)
 
+> [!WARNING]
+> This website is compatible for desktop screens only. Mobile and tablet views are not supported.
 ---
 
 ## 📌 Table of Contents
